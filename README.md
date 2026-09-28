@@ -1,45 +1,44 @@
-# MTBF Toolkit — 웹에서 복사해서 사용하기
+# MTBF Toolkit — AA PC 실행 안내
 
-Python 표준 라이브러리만 사용하는 논문 기반 MTBF 계산·특성화 보조 도구입니다.
-실제 셀 특성값과 PrimeSim 연결은 업무용 환경에서 확인해야 합니다.
+논문 기반 MTBF 계산·특성화 보조 도구입니다. Python 3.9 이상과 표준 라이브러리만 사용합니다.
+실제 셀 파라미터와 PrimeSim 연결은 AA PC에서 확인해야 합니다.
 예제 파라미터는 가상 값이며 설계 판단에 사용할 수 없습니다.
 
-## PC에서 하는 일
+**MD만 복사하면 실행 준비가 끝나는 것은 아닙니다. 아래 파일 하나로 코드와 지침 18개를 생성합니다.**
 
-1. 이 저장소에서 **COPY_THIS_bootstrap.py**를 엽니다.
-2. **Raw** 버튼을 누릅니다. Raw 화면에서 `Ctrl+A`, `Ctrl+C`로 전체 내용을 복사합니다.
-3. VS Code에서 새 파일 `bootstrap_mtbf.py`를 만들고 붙여 넣은 뒤 UTF-8로 저장합니다.
-4. 그 파일이 있는 폴더의 터미널에서 실행합니다.
+## 시작하기
 
-```text
-python bootstrap_mtbf.py --dest mtbf_work
-```
-
-Python 실행 명령이 다르면 확인된 `python3`, `py -3` 또는 실행 파일 경로로 바꿉니다.
-`mtbf_work`가 이미 있으면 다른 새 폴더명을 사용하세요. 기존 폴더는 덮어쓰지 않습니다.
-성공 시 **Created and verified 16 files**가 표시됩니다.
-설치기는 네트워크 접속, 프로그램 설치, PrimeSim 실행을 하지 않고 파일만 생성합니다.
-
-5. VS Code에서 생성된 **mtbf_work** 폴더를 엽니다.
-6. Copilot에 아래 요청을 붙여 넣습니다.
+1. [COPY_THIS_bootstrap.py](COPY_THIS_bootstrap.py)를 열고 **Copy raw file** 버튼으로 전체 코드를 복사합니다. 또는 Raw 화면의 전체 텍스트를 복사합니다.
+2. AA PC에서 새 파일 `bootstrap_mtbf.py`에 붙여 넣고 UTF-8로 저장합니다.
+3. 그 파일이 있는 폴더의 터미널에서 실행합니다.
 
 ```text
-START_HERE.md와 WORK_PC_AGENT.md를 읽고 단계 A와 B를 수행해줘.
-실제 대상 DFF 넷리스트와 PDK 경로는 필요한 경우 나에게 물어봐.
-YOUR_DFF_NETLIST.spice와 YOUR_DFF_CELL은 예시이므로 실제 파일과 셀 이름으로 설정해.
-핀, reset, well bias, 전압, 모델 코너, PrimeSim 명령은 확인된 자료를 사용해.
-가능한 검사는 직접 실행하고, 실행 권한이 없으면 정확한 명령을 알려줘.
-결과는 results/work_pc_001에 저장하고 RETURN_TO_REVIEWER.md를 작성해줘.
-아직 실제 파라미터를 검증하지 않았으므로 DFF 개수를 추천하지 마.
+python bootstrap_mtbf.py --dest mtbf_work_v2
 ```
 
-## 생성되는 내용
+Python 명령은 환경에 따라 `python3` 또는 `py -3`일 수 있습니다.
+이미 존재하는 폴더를 지정하면 중단합니다. 새 폴더명을 사용하세요.
+성공 시 `Created and verified 18 files`가 표시됩니다.
+파일 생성만 수행하며, 네트워크 접속·프로그램 설치·PrimeSim 실행은 하지 않습니다.
 
-- MTBF 계산기: 논문 식 (9), (17), (19), 실제 DFF 개수 K와 N=K-1 구분
-- 넷리스트·환경 검사, 외부 시뮬레이터 실행 기록
-- 지수 파형 피팅, aperture 환산, bracket 탐색 함수
-- Copilot 실행 지침, 특성화 절차, 결과 반환 양식
-- 자동 테스트 12개
+4. 생성된 `mtbf_work_v2` 폴더를 VS Code에서 엽니다.
+5. [AA_PC_FIRST_RUN.md](AA_PC_FIRST_RUN.md)의 테스트 명령과 Copilot 요청문을 실행합니다.
 
-검증되지 않은 파라미터와 적용 범위 밖 조건은 추천에서 제외합니다.
-PrimeSim 어댑터 및 실제 회로 검증은 아직 대상 환경에 연결해야 합니다.
+## 남은 작업
+
+| 항목 | 상태 |
+|---|---|
+| 논문 수식 계산, 넷리스트·환경 검사 코드 | 구현 및 소프트웨어 시험 완료 |
+| 실행 기록, 피팅, 경계 탐색 | 보조 도구 제공; 실제 엔진 연결 필요 |
+| 실제 핀·모델·전원·reset·저장 노드 | AA PC에서 확인 필요 |
+| 네 파라미터 추출과 독립 다단 검증 | AA PC에서 수행 필요 |
+| 검증된 DFF 개수 추천 | 실제 검증 후 가능 |
+
+처음에는 환경 조사와 정상 DFF 동작 확인(단계 A/B)을 수행하고 `RETURN_TO_REVIEWER.md`를 작성합니다.
+
+## 문서 수정 시
+
+루트 MD와 설치기 안의 MD는 함께 갱신해야 합니다. MD만 수정하면 설치기 내부에는 반영되지 않습니다.
+유지관리자는 `python build_web_bundle.py`로 갱신 후 새 폴더에 복원하여 시험합니다.
+이 스크립트는 AA PC의 첫 실행에 필요하지 않습니다. `github_published.png`도 이전 게시 화면일 뿐입니다.
+`WORK_PC_AGENT.md`는 기존 파일명 호환성을 위해 이름을 유지하며 내용은 AA PC 기준입니다.

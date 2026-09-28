@@ -18,9 +18,9 @@ Beer et al., MTBF Bounds for Multistage Synchronizers (ASYNC 2013)의 모델을 
 - 작업 폴더 및 사용자가 지정한 PDK/넷리스트 위치에서 조사한다. 전체 디스크를 무작정 검색하지 않는다.
 - OS, Python 버전, PrimeSim의 실제 엔진 이름과 버전, 실행 파일, 라이선스 접근 여부를 확인한다. 기존 성공 사례가 있으면 그 실행법을 우선 사용한다. 버전 확인 옵션도 로컬 도움말/기존 기록을 따른다.
 - `python -m unittest discover -s tests -v` 실행 및 로그 저장.
-- `python scripts/check_environment.py --netlist "실제경로" --simulator "확인된실행파일" --out results/work_pc_001/environment.json` 실행. 실행 파일이 아직 없으면 --simulator를 생략하고 미확인으로 남긴다. 출력 부모 폴더를 먼저 만든다.
+- `python scripts/check_environment.py --netlist "실제경로" --simulator "확인된실행파일" --out results/aa_pc_001/environment.json` 실행. 실행 파일이 아직 없으면 --simulator를 생략하고 미확인으로 남긴다. 출력 부모 폴더를 먼저 만든다.
 - `inspect_netlist.py`를 실제 파일에 실행. M 소자가 있는지, X가 호출하는 정의가 어디 있는지 확인. `.include`/`.lib`를 읽어 필요한 모델과 section이 실제 해석되는지 추적한다. 검사기는 include를 자동 해석하지 않는다.
-- 외부 핀 CK D Q R VDD VNW VPW VSS는 사진에서 전사한 정보다. 실제 .SUBCKT와 비교한다. R의 기능·극성, well bias, 전원 전압은 라이브러리 자료 또는 회로 분석으로 확인한다.
+- 외부 핀 CK D Q R VDD VNW VPW VSS는 템플릿의 예시다. 실제 .SUBCKT와 비교한다. R의 기능·극성, well bias, 전원 전압은 라이브러리 자료 또는 회로 분석으로 확인한다.
 - 이름에 있는 nominal/max/25c를 곧바로 transistor corner, RC corner, 시뮬레이션 온도로 간주하지 않는다. 각각의 근거를 기록한다.
 - full inventory는 내부 자료다. 공유용 요약에는 파일 해시, 소자 수, 모델 참조 해결 여부, 핀 확인 결과, 미해결 사항을 기록한다.
 
