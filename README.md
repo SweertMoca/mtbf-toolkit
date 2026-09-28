@@ -4,11 +4,11 @@ Python 표준 라이브러리만 사용하는 논문 기반 MTBF 계산·특성�
 실제 셀 특성값과 PrimeSim 연결은 업무용 환경에서 확인해야 합니다.
 예제 파라미터는 가상 값이며 설계 판단에 사용할 수 없습니다.
 
-## 업무용 PC에서 하는 일
+## PC에서 하는 일
 
 1. 이 저장소에서 **COPY_THIS_bootstrap.py**를 엽니다.
 2. **Raw** 버튼을 누릅니다. Raw 화면에서 `Ctrl+A`, `Ctrl+C`로 전체 내용을 복사합니다.
-3. 업무용 VS Code에서 새 파일 `bootstrap_mtbf.py`를 만들고 붙여 넣은 뒤 UTF-8로 저장합니다.
+3. VS Code에서 새 파일 `bootstrap_mtbf.py`를 만들고 붙여 넣은 뒤 UTF-8로 저장합니다.
 4. 그 파일이 있는 폴더의 터미널에서 실행합니다.
 
 ```text
@@ -43,7 +43,3 @@ YOUR_DFF_NETLIST.spice와 YOUR_DFF_CELL은 예시이므로 실제 파일과 셀 
 
 검증되지 않은 파라미터와 적용 범위 밖 조건은 추천에서 제외합니다.
 PrimeSim 어댑터 및 실제 회로 검증은 아직 대상 환경에 연결해야 합니다.
-
-원 논문: Beer et al., “MTBF Bounds for Multistage Synchronizers”, ASYNC 2013,
-DOI: 10.1109/ASYNC.2013.18.
-이 전달 파일에는 PDK, 실제 넷리스트, 사진, 논문 PDF, 로컬 실행 로그가 없습니다.
